@@ -1,15 +1,15 @@
 use std::{env::args, path::Path, process::Command};
 fn main() -> std::io::Result<()> {
-    let wallpaper: Vec<String> = args().collect();
-    if wallpaper.len() >= 2 {
-        if Path::new(&wallpaper[1]).exists() {
-            if !wallpaper[1].ends_with(".png") != true {
+    let all_args: Vec<String> = args().collect();
+    if all_args.len() >= 2 {
+        if Path::new(&all_args[1]).exists() {
+            if !all_args[1].ends_with(".png") != true {
                 let _walling = Command::new("wal")
-                    .args(["-i", &wallpaper[1], "--saturate", "1"])
+                    .args(["-i", &all_args[1], "--saturate", "1"])
                     .output();
-                let _set_wallpaper = Command::new("cp")
+                let _set_all_args = Command::new("cp")
                     .args([
-                        &wallpaper[1],
+                        &all_args[1],
                         "/home/dudebro/.config/awesome/themes/powerarrow-dark/wall.png",
                     ])
                     .output();
@@ -23,8 +23,8 @@ fn main() -> std::io::Result<()> {
             error_print("Not a valid path")
         }
     } else {
-        match wallpaper.len() {
-            1 => println!("Usage: awesomewal [path to wallpaper]"),
+        match all_args.len() {
+            1 => println!("Usage: awesomewal [path to all_args]"),
             _ => error_print("How"),
         }
     }
